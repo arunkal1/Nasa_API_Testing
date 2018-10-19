@@ -1,5 +1,6 @@
 require_relative '../lib/nasa_api.rb'
 
+# ======================= CHECK NASA AND LINKS =======================
 describe "Nasa" do
   context "Getting all the information from NASA" do
     before(:all) do
@@ -39,14 +40,122 @@ describe "Nasa" do
     end
   end
 
-  context "Getting all the information from NASA" do
+  # ==================== CHECK NEAR_EARTH_OBJECTS ====================
+  context "Getting all the information from Near_Earth_Objects" do
     before(:all) do
       @nasa_class = NasaApi.new.nasa_api_service
       # @nasa_index = @nasa_class.initialize
     end
 
-    # it "test" do
-    #   @nasa_class.check_is_a_string2
-    # end
+    # Checks that near_earth_objects is a Hash
+    it "Should return near_earth_objects as an Hash" do
+      expect(@nasa_class.nasa["near_earth_objects"]).to be_a (Hash)
+    end
+
+    # Checks that near_earth_objects/2015-09-08 is an Array
+    it "Should return near_earth_objects and 2015-09-08 as an Array" do
+      expect(@nasa_class.nasa["near_earth_objects"]["2015-09-08"]).to be_a (Array)
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][links][self] is a String
+    it "Should return [near_earth_objects][2015-09-08][links][self] as a String" do
+      expect(@nasa_class.check_is_a_string_2015 "links","self").to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][links][id] is a String
+    it "Should return [near_earth_objects][2015-09-08][id] as a String" do
+      expect(@nasa_class.check_is_a_string_2015_all "id").to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][links][neo_reference_id] is a String
+    it "Should return [near_earth_objects][2015-09-08][neo_reference_id] as a String" do
+      expect(@nasa_class.check_is_a_string_2015_all "neo_reference_id").to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][links][name] is a String
+    it "Should return [near_earth_objects][2015-09-08][name] as a String" do
+      expect(@nasa_class.check_is_a_string_2015_all "name").to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][links][nasa_jpl_url] is a String
+    it "Should return [near_earth_objects][2015-09-08][nasa_jpl_url] as a String" do
+      expect(@nasa_class.check_is_a_string_2015_all "nasa_jpl_url").to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][links][absolute_magnitude_h] is a Float
+    it "Should return [near_earth_objects][2015-09-08][absolute_magnitude_h] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_all "absolute_magnitude_h", Float).to be true
+    end
+
   end
+
+# ============= CHECK NEAR_EARTH_OBJECTS ESTIMATED_DIAMETER =========
+  context "Getting all the information from Near_Earth_Objects [estimated_diameter]" do
+    before(:all) do
+      @nasa_class = NasaApi.new.nasa_api_service
+      # @nasa_index = @nasa_class.initialize
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][kilometers][estimated_diameter_min] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][kilometers][estimated_diameter_min] as a Float" do
+      # @nasa_class.check_is_a_float_2015_est_diam
+      expect(@nasa_class.check_is_a_float_2015_est_diam "kilometers","estimated_diameter_min",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][kilometers][estimated_diameter_max] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][kilometers][estimated_diameter_max] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "kilometers","estimated_diameter_max",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][meters][estimated_diameter_min] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][meters][estimated_diameter_min] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "meters","estimated_diameter_min",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][meters][estimated_diameter_max] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][meters][estimated_diameter_max] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "meters","estimated_diameter_max",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][miles][estimated_diameter_min] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][miles][estimated_diameter_min] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "miles","estimated_diameter_min",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][miles][estimated_diameter_max] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][miles][estimated_diameter_max] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "miles","estimated_diameter_max",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][feet][estimated_diameter_min] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][feet][estimated_diameter_min] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "feet","estimated_diameter_min",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][estimated_diameter][feet][estimated_diameter_max] is a Float
+    it "Should return [near_earth_objects][2015-09-08][estimated_diameter][feet][estimated_diameter_max] as a Float" do
+      expect(@nasa_class.check_is_a_float_2015_est_diam "feet","estimated_diameter_max",Float).to be true
+    end
+
+    # Checks that [near_earth_objects][2015-09-08][is_potentially_hazardous_asteroid] is a Float
+    it "Should return [near_earth_objects][2015-09-08][is_potentially_hazardous_asteroid] to be false" do
+      expect(@nasa_class.check_is_a_bool_2015_all "is_potentially_hazardous_asteroid").to be false
+    end
+
+  end
+
+  # ============= CHECK NEAR_EARTH_OBJECTS CLOSE_APPROACH_DATA =========
+    context "Getting all the information from Near_Earth_Objects [close_approach_data]" do
+      before(:all) do
+        @nasa_class = NasaApi.new.nasa_api_service
+        # @nasa_index = @nasa_class.initialize
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][close_approach_date] as a String" do
+        expect(@nasa_class.check_2015_app_data "close_approach_date", String).to be true
+      end
+
+
+
+    end
 end
