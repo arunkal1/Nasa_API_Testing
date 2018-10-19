@@ -155,7 +155,49 @@ describe "Nasa" do
         expect(@nasa_class.check_2015_app_data "close_approach_date", String).to be true
       end
 
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][epoch_date_close_approach] as an Integer" do
+        expect(@nasa_class.check_2015_app_data "epoch_date_close_approach", Integer).to be true
+      end
 
+      # ===================== RELATIVE VELOCITY =====================
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][relative_velocity][kilometers_per_second] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "relative_velocity", "kilometers_per_second", String).to be true
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][relative_velocity][kilometers_per_hour] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "relative_velocity", "kilometers_per_hour", String).to be true
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][relative_velocity][miles_per_hour] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "relative_velocity", "miles_per_hour", String).to be true
+      end
+
+      # ===================== MISS DISTANCE =====================
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][miss_distance][astronomical] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "miss_distance", "astronomical", String).to be true
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][miss_distance][lunar] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "miss_distance", "lunar", String).to be true
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][miss_distance][kilometers] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "miss_distance", "kilometers", String).to be true
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][miss_distance][miles] as a String" do
+        expect(@nasa_class.check_2015_app_data_inner "miss_distance", "miles", String).to be true
+      end
+
+      it "Should return [near_earth_objects][2015-09-08][close_approach_data][orbiting_body] as an String" do
+        expect(@nasa_class.check_2015_app_data "orbiting_body", String).to be true
+      end
+
+      # Checks that [near_earth_objects][2015-09-08][is_potentially_hazardous_asteroid] is a Float
+      it "Should return [near_earth_objects][2015-09-08][is_sentry_object] to be false" do
+        expect(@nasa_class.check_is_a_bool_2015_all "is_sentry_object").to be false
+      end
 
     end
 end

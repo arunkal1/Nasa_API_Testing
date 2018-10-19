@@ -86,4 +86,18 @@ class NasaApiService
       end
     end
   end
+
+  # ====== CHECK NEAR_EARTH_OBJECTS CLOSE_APPROACH_DATA-relative_velocity ======
+
+  def check_2015_app_data_inner key1, key2, value
+    @nasa["near_earth_objects"]["2015-09-08"].each do |link|
+      link["close_approach_data"].each do |item|
+        if item[key1][key2].is_a?(value)
+          return true
+        end
+      end
+    end
+  end
+
+
 end
